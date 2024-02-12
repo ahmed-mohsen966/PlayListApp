@@ -178,11 +178,16 @@
     <Compile Include="Migrations\202402111614404_initialCreate.designer.cs">
       <DependentUpon>202402111614404_initialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202402121123100_SeedSingersAndSongs.cs" />
+    <Compile Include="Migrations\202402121123100_SeedSingersAndSongs.designer.cs">
+      <DependentUpon>202402121123100_SeedSingersAndSongs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Enums\SongTypeEnum.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Seeds\DefaultData.cs" />
     <Compile Include="Models\Singer.cs" />
     <Compile Include="Models\Songs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -214,6 +219,8 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="wwwroot\Images\Singers\Amr Diab\35D9A83D-562B-486F-AA21-F8E7BFF0E493.jpeg" />
+    <Content Include="wwwroot\Images\Singers\Elessaily\OIP1.jpg" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -293,6 +300,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202402111614404_initialCreate.resx">
       <DependentUpon>202402111614404_initialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402121123100_SeedSingersAndSongs.resx">
+      <DependentUpon>202402121123100_SeedSingersAndSongs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

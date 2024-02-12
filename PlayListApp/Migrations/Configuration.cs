@@ -1,5 +1,6 @@
 ﻿namespace PlayListApp.Migrations
 {
+    using PlayListApp.Models.Seeds;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -18,6 +19,9 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
+
+            DefaultData.seedSingers(context);
+            DefaultData.seedSongs(context);
         }
     }
 }
