@@ -25,6 +25,9 @@ namespace PlayListApp.Models
         {
         }
 
+        public DbSet<Singer> Singers { get; set; }
+        public DbSet<Songs> Songs { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
