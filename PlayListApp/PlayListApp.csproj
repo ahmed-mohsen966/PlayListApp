@@ -190,6 +190,7 @@
     <Compile Include="Models\Seeds\DefaultData.cs" />
     <Compile Include="Models\Singer.cs" />
     <Compile Include="Models\Songs.cs" />
+    <Compile Include="Models\ViewModels\SingerSongsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -266,6 +267,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\create.cshtml" />
+    <Content Include="Views\Shared\SingerViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

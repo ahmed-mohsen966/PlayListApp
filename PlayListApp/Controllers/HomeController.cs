@@ -1,18 +1,96 @@
-﻿using System;
+﻿using PlayListApp.Models;
+using PlayListApp.Models.Enums;
+using PlayListApp.Models.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace PlayListApp.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
+        private readonly ApplicationDbContext _context;
+        public HomeController() {
+            _context = new ApplicationDbContext();
         }
 
+        public HomeController(ApplicationDbContext context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
+        public ActionResult Index()
+        {
+            var singers = _context.Singers.Include("Songs").ToList();
+
+            var SingersSongs = new List<SingerSongsViewModel>();
+
+            foreach (var singer in singers)
+            {
+                if (singer.Songs.Count() == 0)
+                {
+                    var model = new SingerSongsViewModel()
+                    {
+                        SingerName = singer.Name,
+                        SingerId = singer.Id,
+                        Image = singer.Image
+                    };
+                    SingersSongs.Add(model);
+                }
+                else
+                {
+                    var model = new SingerSongsViewModel()
+                    {
+                        SongName = singer.Songs.FirstOrDefault().Name,
+                        SongType = singer.Songs.FirstOrDefault().Type.ToString(),
+                        SingerName = singer.Name,
+                        SingerId = singer.Id,
+                        Image = singer.Image
+                    };
+                    SingersSongs.Add(model);
+                }
+            }
+            return View(SingersSongs);
+        }
+
+        public ActionResult Create()
+        {
+            var model = new Singer();
+
+            return View("SingerViewModel" , model);
+        }
+
+        [HttpPost]
+        public ActionResult Create(Singer model)
+        {
+            if (!ModelState.IsValid)
+                return View("SingerViewModel" , model);
+
+            byte[] imagebytes = null;
+            if (model.ImageFile != null && model.ImageFile.ContentLength > 0)
+            {
+                using (var binaryReader = new BinaryReader(model.ImageFile.InputStream))
+                {
+                    imagebytes = binaryReader.ReadBytes(model.ImageFile.ContentLength);
+                }
+            }
+            var singer = new Singer()
+            {
+                Id = Guid.NewGuid(),
+                Name = model.Name,
+                Image = imagebytes
+            };
+
+            _context.Singers.Add(singer);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

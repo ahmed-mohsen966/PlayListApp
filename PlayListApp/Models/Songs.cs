@@ -15,6 +15,6 @@ namespace PlayListApp.Models
         public Guid SingerId { get; set; }
 
         [ForeignKey(nameof(SingerId))]
-        public virtual Singer Singer { get; set; }
+        public Singer Singer { get; set; }
     }
 }
