@@ -68,16 +68,14 @@
                                 <td>@Singer.SongName</td>
                                 <td>@Singer.SongType</td>
                                 <td class="text-center">
-                                    <a asp-action="Details" asp-route-id="@Singer.SingerId" class="btn btn-outline-secondary">
-                                        <i class="bi bi-camera-reels"></i>
-                                        Details
-                                    </a>
+
                                     @Html.ActionLink("Update", "Update", "Home", new { SingerId = @Singer.SingerId }, new { @class = "btn btn-sm btn-primary" })
 
-                                    <a asp-action="Delete" asp-route-id="@Singer.SingerId" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i>
-                                        Delete
-                                    </a>
+                                    @using (Html.BeginForm("Delete", "Home", new { SingerId = Singer.SingerId }, FormMethod.Post, new { @class = "form-inline d-inline" }))
+                                    {
+                                        <button type="submit" class="btn btn-sm btn-danger"  onclick="return confirm('Are you sure you want to delete this singer?');">Delete</button>
+                                    }
+
                                 </td>
                             </tr>
                         }

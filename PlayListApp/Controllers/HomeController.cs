@@ -123,6 +123,18 @@ namespace PlayListApp.Controllers
             return RedirectToAction(nameof(Index));
 
         }
+
+        [HttpPost]
+        public ActionResult Delete(Guid SingerId)
+        {
+            var singer = _context.Singers.Find(SingerId);
+            if (singer != null)
+            {
+                _context.Singers.Remove(singer);
+                _context.SaveChanges();
+            }
+            return RedirectToAction(nameof(Index));
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
