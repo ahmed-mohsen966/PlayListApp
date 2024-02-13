@@ -20,6 +20,8 @@
             </div>
             <div class="custom-file">
                 @Html.LabelFor(model => model.ImageFile, new { @class = "text-muted" })
+                @if (Model.Image != null)
+                {<img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Image)" alt="singer image" style="width:100px; display:block; margin:20px" />}
                 <input type="file" id="ImageFile" name="ImageFile" class="form-control" />
                 @Html.ValidationMessageFor(model => model.ImageFile, "", new { @class = "text-danger" })
             </div>

@@ -72,10 +72,8 @@
                                         <i class="bi bi-camera-reels"></i>
                                         Details
                                     </a>
-                                    <a asp-action="Update" asp-route-id="@Singer.SingerId" class="btn btn-outline-primary">
-                                        <i class="bi bi-pencil"></i>
-                                        Edit
-                                    </a>
+                                    @Html.ActionLink("Update", "Update", "Home", new { SingerId = @Singer.SingerId }, new { @class = "btn btn-sm btn-primary" })
+
                                     <a asp-action="Delete" asp-route-id="@Singer.SingerId" class="btn btn-danger">
                                         <i class="bi bi-trash"></i>
                                         Delete

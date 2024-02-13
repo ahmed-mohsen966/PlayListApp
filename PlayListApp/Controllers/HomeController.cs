@@ -4,6 +4,7 @@ using PlayListApp.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -90,6 +91,37 @@ namespace PlayListApp.Controllers
             _context.SaveChanges();
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public ActionResult Update(Guid SingerId)
+        {
+            var singer = _context.Singers.FirstOrDefault(x => x.Id == SingerId);
+
+            return View("SingerViewModel", singer);
+
+        }
+
+        [HttpPost]
+        public ActionResult Update(Singer singer)
+        {
+            if (!ModelState.IsValid)
+                return View("SingerViewModel", singer);
+
+            byte[] imagebytes = null;
+            if (singer.ImageFile != null && singer.ImageFile.ContentLength > 0)
+            {
+                using (var binaryReader = new BinaryReader(singer.ImageFile.InputStream))
+                {
+                    imagebytes = binaryReader.ReadBytes(singer.ImageFile.ContentLength);
+                }
+            }
+            singer.Image = imagebytes;
+
+            _context.Singers.AddOrUpdate(singer);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+
         }
         public ActionResult About()
         {
