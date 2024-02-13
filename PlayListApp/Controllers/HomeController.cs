@@ -57,6 +57,8 @@ namespace PlayListApp.Controllers
                     SingersSongs.Add(model);
                 }
             }
+            ViewBag.count = _context.Singers.Count();
+
             return View(SingersSongs);
         }
 
