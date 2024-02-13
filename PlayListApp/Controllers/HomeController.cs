@@ -25,9 +25,10 @@ namespace PlayListApp.Controllers
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        public ActionResult Index()
+        public ActionResult Index(int pageIndex = 1)
         {
-            var singers = _context.Singers.Include("Songs").ToList();
+            int pageSize = 10;
+            var singers = _context.Singers.Include("Songs").OrderBy(s => s.Name).Skip((pageIndex -1) * pageSize).Take(pageSize);
 
             var SingersSongs = new List<SingerSongsViewModel>();
 
