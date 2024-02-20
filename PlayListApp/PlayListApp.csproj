@@ -174,6 +174,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IBaseRepo.cs" />
     <Compile Include="Migrations\202402111614404_initialCreate.cs" />
     <Compile Include="Migrations\202402111614404_initialCreate.designer.cs">
       <DependentUpon>202402111614404_initialCreate.cs</DependentUpon>
@@ -192,6 +193,7 @@
     <Compile Include="Models\Songs.cs" />
     <Compile Include="Models\ViewModels\SingerSongsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BaseRepo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
